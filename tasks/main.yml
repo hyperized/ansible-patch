@@ -1,0 +1,19 @@
+---
+- name: patch files that need patching
+  become: True
+  become_user: root
+  copy:
+    src: "{{ item.value.file }}"
+    dest: "{{ ansible_patch_dir }}/{{ item.value.path }}/{{ item.value.file }}"
+    owner: "{{ ansible_patch_user }}"
+    group: "{{ ansible_patch_group }}"
+    mode: "{{ ansible_patch_mode }}"
+  with_dict: "{{ ansible_patch_dict }}"
+
+- name: remove compiled files
+  become: True
+  become_user: root
+  file:
+    path: "{{ ansible_patch_dir }}/{{ item.value.path }}/{{ item.value.file }}c"
+    state: absent
+  with_dict: "{{ ansible_patch_dict }}"

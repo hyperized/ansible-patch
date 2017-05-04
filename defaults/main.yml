@@ -1,0 +1,9 @@
+---
+ansible_patch_dir: /usr/local/lib/python2.7/dist-packages/ansible
+ansible_patch_dict: {}
+  # some_module:
+  #   file: some_module.py
+  #   path: modules/extras/some_module
+ansible_patch_user: root
+ansible_patch_group: staff
+ansible_patch_mode: 0644
